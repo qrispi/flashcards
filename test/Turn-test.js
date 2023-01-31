@@ -9,8 +9,8 @@ describe('Turn', () => {
     let turn
 
     beforeEach(() => {
-        card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter')
-        turn = new Turn('pug', card)
+        card = new Card(13, 'Who is the best Superhero?', ['Spider-Man', 'Batman', 'Superman'], 'Batman')
+        turn = new Turn('Spider-Man', card)
     })
 
     it('should be a function', () =>
@@ -22,7 +22,7 @@ describe('Turn', () => {
     )
 
     it('should store the player\'s guess', () => 
-        expect(turn.guess).to.equal('pug')
+        expect(turn.guess).to.equal('Spider-Man')
     )
 
     it('should store the current card in play', () => 
@@ -50,6 +50,7 @@ describe('Turn', () => {
     })
 
     it('should respond if the player guesses right', () => {
+        turn.guess = 'Batman'
         let feedback = turn.giveFeedback()
         expect(feedback).to.equal('correct!')
     })
