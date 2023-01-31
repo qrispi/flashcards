@@ -4,15 +4,13 @@ const expect = chai.expect
 const Turn = require('../src/Turn')
 const Card = require('../src/Card')
 
-describe('Turn', function() {
+describe('Turn', () => {
     let card
     let turn
 
-    beforeEach(function () {
+    beforeEach(() => {
         card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter')
         turn = new Turn('pug', card)
-        // console.log(card)
-        // console.log(turn)
     })
 
     it('should be a function', () =>
@@ -30,4 +28,29 @@ describe('Turn', function() {
     it('should store the current card in play', () => 
         expect(turn.card).to.deep.equal(card)
     )
+
+    it('should return the player\'s guess', () => {
+        let guess = turn.returnGuess()
+        expect(turn.guess).to.equal(guess)
+    })
+
+    it('should return the current card in play', () => {
+        let currentCard = turn.returnCard()
+        expect(turn.card).to.equal(currentCard)
+    })
+
+    it('should check if the player\'s guess is correct', () => {
+        let check = turn.evaluateGuess()
+        expect(check).to.be.boolean
+    })
+
+    it('should respond if the player guesses wrong', () => {
+        let feedback = turn.giveFeedback()
+        expect(feedback).to.equal('incorrect!')
+    })
+
+    it('should respond if the player guesses right', () => {
+        let feedback = turn.giveFeedback()
+        expect(feedback).to.equal('correct!')
+    })
 })
