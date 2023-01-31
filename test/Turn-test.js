@@ -22,4 +22,12 @@ describe('Turn', function() {
     it('should be an instance of Turn', () => 
         expect(turn).to.be.a.instanceOf(Turn)  
     )
+
+    it('should store the player\'s guess', () => 
+        expect(turn.guess).to.equal('pug')
+    )
+
+    it('should store the current card in play', () => 
+        expect(turn.card).to.deep.equal(card)
+    )
 })
