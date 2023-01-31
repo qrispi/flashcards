@@ -41,7 +41,7 @@ describe('Turn', () => {
 
     it('should check if the player\'s guess is correct', () => {
         let check = turn.evaluateGuess()
-        expect(check).to.be.boolean
+        expect(check).to.be.a('boolean')
     })
 
     it('should respond if the player guesses wrong', () => {
