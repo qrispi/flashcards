@@ -38,4 +38,17 @@ describe('Round', () => {
     it('should start with the first card in the deck', () =>
         expect(round.currentCard).to.deep.equal(card1)
     )
+    
+    it('should start with no turns taken', () => 
+        expect(round.turns).to.equal(0)
+    )
+
+    it('should start with no incorrect guesses', () => 
+        expect(round.incorrectGuesses).to.deep.equal([])
+    )
+
+    it('should return the current card', () => {
+        let currentCard = round.returnCurrentCard()
+        expect(currentCard).to.deep.equal(card1)
+    })
 })
