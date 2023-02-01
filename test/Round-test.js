@@ -16,8 +16,8 @@ describe('Round', () => {
     
     beforeEach(() => {
         card1 = new Card(13, 'Who is the best Superhero?', ['Spider-Man', 'Batman', 'Superman'], 'Batman')
-        card2 = new Card(27, 'Who is the best Supervillain?', ['Joker', 'Thanos', 'Darth Vader'], 'Joker')
-        card3 = new Card(007, 'Who is the best Spy?', ['James Bond', 'Black Widow', 'Jason Bourne'], 'Black Widow')
+        card2 = new Card(14, 'Who is the best Supervillain?', ['Joker', 'Thanos', 'Darth Vader'], 'Joker')
+        card3 = new Card(15, 'Who is the best Spy?', ['James Bond', 'Black Widow', 'Jason Bourne'], 'Black Widow')
         deck = new Deck([card1, card2, card3])
         turn = new Turn('Spider-Man', card1)
         round = new Round(deck)
@@ -69,5 +69,22 @@ describe('Round', () => {
         round.takeTurn('Batman')
         round.takeTurn('Black Widow')
         expect(round.turns).to.equal(3)
+    })
+
+    it('should update the current card after every guess', () => {
+        round.takeTurn('Joker')
+        expect(round.currentCard).to.deep.equal(card2)
+
+        round.takeTurn('Batman')
+        expect(round.currentCard).to.deep.equal(card3)
+    })
+
+    it('should only store the id of cards the player guesses wrong', () => {
+        round.takeTurn('Superman')
+        expect(round.incorrectGuesses).to.deep.equal([13])
+
+        round.takeTurn('Joker')
+        round.takeTurn('James Bond')
+        expect(round.incorrectGuesses).to.deep.equal([13, 15])    
     })
 })
