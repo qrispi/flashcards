@@ -87,4 +87,36 @@ describe('Round', () => {
         round.takeTurn('James Bond')
         expect(round.incorrectGuesses).to.deep.equal([13, 15])    
     })
+
+    it('should calculate the percentage of cards the player guessed correctly', () => {
+        round.takeTurn('Batman')
+        round.takeTurn('Joker')
+        round.takeTurn('James Bond')
+
+        let percent = round.calculatePercentCorrect()
+        expect(percent).to.equal(67)
+    })
+
+    it('should return 100 if the player guessed all cards correctly', () => {
+        round.takeTurn('Batman')
+        round.takeTurn('Joker')
+        round.takeTurn('Black Widow')
+
+        let percent = round.calculatePercentCorrect()
+        expect(percent).to.equal(100)
+    })
+
+    it('should return 0 if the player guessed all cards incorrectly', () => {
+        round.takeTurn('Spider-Man')
+        round.takeTurn('Darth Vader')
+        round.takeTurn('Jason Bourne')
+
+        let percent = round.calculatePercentCorrect()
+        expect(percent).to.equal(0)
+    })
+
+    it('should return 0 if the player has not guessed yet', () => {
+        let percent = round.calculatePercentCorrect()
+        expect(percent).to.equal(0)
+    })
 })
