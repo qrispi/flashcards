@@ -26,12 +26,6 @@ class Round {
         if (this.turns < 1) {
             return 0
         }
-        if (this.turns > 0 && this.incorrectGuesses.length < 1) {
-            return 100
-        }
-        if (this.turns > 0 && this.incorrectGuesses.length === this.turns) {
-            return 0
-        }
         return Math.round((1 - (this.incorrectGuesses.length / this.turns)) * 100)
     }
 
