@@ -11,6 +11,12 @@ class Round {
     returnCurrentCard() {
         return this.currentCard
     }
+
+    takeTurn(guess) {
+        let currentTurn = new Turn(guess, this.currentCard)
+        this.turns++
+        return currentTurn.giveFeedback()
+    }
 }
 
 module.exports = Round
