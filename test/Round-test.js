@@ -49,42 +49,51 @@ describe('Round', () => {
 
     it('should return the current card', () => {
         let currentCard = round.returnCurrentCard()
+
         expect(currentCard).to.deep.equal(card1)
     })
 
     it('should respond if a guess is correct each turn', () => {
         let correctGuess = round.takeTurn('Batman')
+
         expect(correctGuess).to.equal('correct!')
     })
 
     it('should respond if a guess is incorrect each turn', () => {
         let incorrectGuess = round.takeTurn('Spider-Man')
+
         expect(incorrectGuess).to.equal('incorrect!')
     })
 
     it('should update the turn count after every guess', () => {
         round.takeTurn('Joker')
+
         expect(round.turns).to.equal(1)
 
         round.takeTurn('Batman')
         round.takeTurn('Black Widow')
+
         expect(round.turns).to.equal(3)
     })
 
     it('should update the current card after every guess', () => {
         round.takeTurn('Joker')
+
         expect(round.currentCard).to.deep.equal(card2)
 
         round.takeTurn('Batman')
+
         expect(round.currentCard).to.deep.equal(card3)
     })
 
     it('should only store the id of cards the player guesses wrong', () => {
         round.takeTurn('Superman')
+
         expect(round.incorrectGuesses).to.deep.equal([13])
 
         round.takeTurn('Joker')
         round.takeTurn('James Bond')
+
         expect(round.incorrectGuesses).to.deep.equal([13, 15])    
     })
 
@@ -94,6 +103,7 @@ describe('Round', () => {
         round.takeTurn('James Bond')
 
         let percent = round.calculatePercentCorrect()
+
         expect(percent).to.equal(67)
     })
 
@@ -103,6 +113,7 @@ describe('Round', () => {
         round.takeTurn('Black Widow')
 
         let percent = round.calculatePercentCorrect()
+
         expect(percent).to.equal(100)
     })
 
@@ -112,11 +123,24 @@ describe('Round', () => {
         round.takeTurn('Jason Bourne')
 
         let percent = round.calculatePercentCorrect()
+
         expect(percent).to.equal(0)
     })
 
     it('should return 0 if the player has not guessed yet', () => {
         let percent = round.calculatePercentCorrect()
+
         expect(percent).to.equal(0)
+    })
+
+    it('should be able to end the round with an informative message', () => {
+        round.takeTurn('Batman')
+        round.takeTurn('Joker')
+        round.takeTurn('James Bond')
+        
+        let message = round.endRound()
+        let percent = round.calculatePercentCorrect()
+
+        expect(message).to.equal(`**Round over!** You answered ${percent}% of the questions correctly!`)
     })
 })
