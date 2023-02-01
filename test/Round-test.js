@@ -20,7 +20,7 @@ describe('Round', () => {
         card3 = new Card(007, 'Who is the best Spy?', ['James Bond', 'Black Widow', 'Jason Bourne'], 'Black Widow')
         deck = new Deck([card1, card2, card3])
         turn = new Turn('Spider-Man', card1)
-        round = new Round()
+        round = new Round(deck)
     })
 
     it('should be a function', () => 
@@ -29,5 +29,13 @@ describe('Round', () => {
 
     it('should be an instance of Round', () =>
         expect(round).to.be.an.instanceOf(Round)
+    )
+
+    it('should store the current deck', () =>
+        expect(round.currentDeck).to.deep.equal(deck)
+    )
+
+    it('should start with the first card in the deck', () =>
+        expect(round.currentCard).to.deep.equal(card1)
     )
 })
