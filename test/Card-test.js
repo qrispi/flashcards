@@ -18,6 +18,10 @@ describe('Card', () => {
 		expect(card).to.be.an.instanceof(Card)
 	)
 
+	it('should store an id', () =>
+		expect(card.id).to.equal(13)
+	)
+
 	it('should store a question', () =>
 		expect(card.question).to.equal('Who is the best Superhero?')
 	)
