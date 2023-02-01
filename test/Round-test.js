@@ -51,4 +51,23 @@ describe('Round', () => {
         let currentCard = round.returnCurrentCard()
         expect(currentCard).to.deep.equal(card1)
     })
+
+    it('should respond if a guess is correct each turn', () => {
+        let correctGuess = round.takeTurn('Batman')
+        expect(correctGuess).to.equal('correct!')
+    })
+
+    it('should respond if a guess is incorrect each turn', () => {
+        let incorrectGuess = round.takeTurn('Spider-Man')
+        expect(incorrectGuess).to.equal('incorrect!')
+    })
+
+    it('should update the turn count after every guess', () => {
+        round.takeTurn('Joker')
+        expect(round.turns).to.equal(1)
+
+        round.takeTurn('Batman')
+        round.takeTurn('Black Widow')
+        expect(round.turns).to.equal(3)
+    })
 })
