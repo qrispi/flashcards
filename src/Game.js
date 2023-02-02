@@ -10,14 +10,14 @@ class Game {
 		this.currentRound
 	}
 
-	start() {
+	start(runTest) {
 		let cards = []
 		prototypeQuestions.forEach(obj => cards.push(new Card(obj["id"], obj["question"], obj["answers"], obj["correctAnswer"])))
 		let deck = new Deck(cards)
 		let round = new Round(deck)
 		this.currentRound = round
-		this.printMessage(deck)
-		this.printQuestion(round)
+		let msg = runTest || this.printMessage(deck)
+		let question = runTest || this.printQuestion(round)
 	}
 
 	printMessage(deck) {
@@ -26,7 +26,7 @@ class Game {
 	}
 
 	printQuestion(round) {
-			util.main(round)
+		util.main(round)
 	}
 }
 
