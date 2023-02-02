@@ -1,7 +1,17 @@
 # FlashCards
+Flashcards is a javascript game played in the console where the player is presented with a 'flashcard' of JS facts, given a few possible answers, and then chooses one using the arrow keys or numbers. In this project, I used Test Driven Development to write test files as I created each JS class which store and manipulate all of the data for the game.
 
+### Project Preview:
 
-## Install & Setup
+![flashcards_demo](https://user-images.githubusercontent.com/24902544/216464895-4e2d544a-1b95-46ad-ae3a-a12cfce8b77d.gif)
+
+### Technologies Used:
+
+- Node.js
+- Mocha testing framework
+- Chai assertion library
+
+### Install & Setup
 
 1. On the top right corner of this page, click the **Fork** button.
 
